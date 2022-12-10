@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ClothesModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Strana">
+          <Key>
+            <PropertyRef Name="StranaID" />
+          </Key>
+          <Property Name="StranaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Strana" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tovars">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="naimenov" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kolichestvo" Type="int" Nullable="false" />
+          <Property Name="cena" Type="money" Nullable="false" />
+          <Property Name="ColorID" Type="int" Nullable="false" />
+          <Property Name="SizeID" Type="int" Nullable="false" />
+          <Property Name="StranaID" Type="int" Nullable="false" />
+          <Property Name="sostav" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="komment" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Tovars_Color">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="Tovars" Type="Self.Tovars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Tovars">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovars_Size">
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="Tovars" Type="Self.Tovars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="Tovars">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovars_Strana">
+          <End Role="Strana" Type="Self.Strana" Multiplicity="1" />
+          <End Role="Tovars" Type="Self.Tovars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strana">
+              <PropertyRef Name="StranaID" />
+            </Principal>
+            <Dependent Role="Tovars">
+              <PropertyRef Name="StranaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ClothesModelContainer">
+          <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Strana" EntityType="Self.Strana" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tovars" EntityType="Self.Tovars" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tovars_Color" Association="Self.FK_Tovars_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Tovars" EntitySet="Tovars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovars_Size" Association="Self.FK_Tovars_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Tovars" EntitySet="Tovars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovars_Strana" Association="Self.FK_Tovars_Strana">
+            <End Role="Strana" EntitySet="Strana" />
+            <End Role="Tovars" EntitySet="Tovars" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ClothesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Color">
+          <Key>
+            <PropertyRef Name="ColorID" />
+          </Key>
+          <Property Name="ColorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Color1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tovars" Relationship="Self.FK_Tovars_Color" FromRole="Color" ToRole="Tovars" />
+        </EntityType>
+        <EntityType Name="Tovars">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="naimenov" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kolichestvo" Type="Int32" Nullable="false" />
+          <Property Name="cena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ColorID" Type="Int32" Nullable="false" />
+          <Property Name="sostav" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="komment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Color" Relationship="Self.FK_Tovars_Color" FromRole="Tovars" ToRole="Color" />
+          <Property Name="SizeID" Type="Int32" Nullable="false" />
+          <Property Name="StranaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Size" Relationship="ClothesModel.FK_Tovars_Size" FromRole="Tovars" ToRole="Size" />
+          <NavigationProperty Name="Strana" Relationship="ClothesModel.FK_Tovars_Strana" FromRole="Tovars" ToRole="Strana" />
+        </EntityType>
+        <Association Name="FK_Tovars_Color">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="Tovars" Type="Self.Tovars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="ColorID" />
+            </Principal>
+            <Dependent Role="Tovars">
+              <PropertyRef Name="ColorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ClothesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Color" EntityType="Self.Color" />
+          <EntitySet Name="Tovars" EntityType="Self.Tovars" />
+          <AssociationSet Name="FK_Tovars_Color" Association="Self.FK_Tovars_Color">
+            <End Role="Color" EntitySet="Color" />
+            <End Role="Tovars" EntitySet="Tovars" />
+          </AssociationSet>
+          <EntitySet Name="Size" EntityType="ClothesModel.Size" />
+          <EntitySet Name="Strana" EntityType="ClothesModel.Strana" />
+          <AssociationSet Name="FK_Tovars_Size" Association="ClothesModel.FK_Tovars_Size">
+            <End Role="Size" EntitySet="Size" />
+            <End Role="Tovars" EntitySet="Tovars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tovars_Strana" Association="ClothesModel.FK_Tovars_Strana">
+            <End Role="Strana" EntitySet="Strana" />
+            <End Role="Tovars" EntitySet="Tovars" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="SizeID" />
+          </Key>
+          <Property Name="SizeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Size1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tovars" Relationship="ClothesModel.FK_Tovars_Size" FromRole="Size" ToRole="Tovars" />
+        </EntityType>
+        <EntityType Name="Strana">
+          <Key>
+            <PropertyRef Name="StranaID" />
+          </Key>
+          <Property Name="StranaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Strana1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tovars" Relationship="ClothesModel.FK_Tovars_Strana" FromRole="Strana" ToRole="Tovars" />
+        </EntityType>
+        <Association Name="FK_Tovars_Size">
+          <End Type="ClothesModel.Size" Role="Size" Multiplicity="1" />
+          <End Type="ClothesModel.Tovars" Role="Tovars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="SizeID" />
+            </Principal>
+            <Dependent Role="Tovars">
+              <PropertyRef Name="SizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tovars_Strana">
+          <End Type="ClothesModel.Strana" Role="Strana" Multiplicity="1" />
+          <End Type="ClothesModel.Tovars" Role="Tovars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Strana">
+              <PropertyRef Name="StranaID" />
+            </Principal>
+            <Dependent Role="Tovars">
+              <PropertyRef Name="StranaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ClothesModelContainer" CdmEntityContainer="ClothesEntities">
+          <EntitySetMapping Name="Color">
+            <EntityTypeMapping TypeName="ClothesModel.Color">
+              <MappingFragment StoreEntitySet="Color">
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="Color1" ColumnName="Color" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tovars">
+            <EntityTypeMapping TypeName="ClothesModel.Tovars">
+              <MappingFragment StoreEntitySet="Tovars">
+                <ScalarProperty Name="StranaID" ColumnName="StranaID" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="naimenov" ColumnName="naimenov" />
+                <ScalarProperty Name="kolichestvo" ColumnName="kolichestvo" />
+                <ScalarProperty Name="cena" ColumnName="cena" />
+                <ScalarProperty Name="ColorID" ColumnName="ColorID" />
+                <ScalarProperty Name="sostav" ColumnName="sostav" />
+                <ScalarProperty Name="komment" ColumnName="komment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Size">
+            <EntityTypeMapping TypeName="ClothesModel.Size">
+              <MappingFragment StoreEntitySet="Size">
+                <ScalarProperty Name="Size1" ColumnName="Size" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Strana">
+            <EntityTypeMapping TypeName="ClothesModel.Strana">
+              <MappingFragment StoreEntitySet="Strana">
+                <ScalarProperty Name="Strana1" ColumnName="Strana" />
+                <ScalarProperty Name="StranaID" ColumnName="StranaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

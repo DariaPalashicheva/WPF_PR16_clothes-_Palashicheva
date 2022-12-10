@@ -1,0 +1,47 @@
+﻿<Page x:Class="WPF_PR16_clothes__Palashicheva.PageMain.PageTovarsAddEdit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WPF_PR16_clothes__Palashicheva.PageMain"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1200"
+      Title="PageTovarsAddEdit">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Наименование" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Количество" Grid.Row="1" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Цена" Grid.Row="2" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Цвет" Grid.Row="3" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Состав" Grid.Row="4" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Страна" Grid.Row="5" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Размер" Grid.Row="6" Style="{StaticResource TextBlock}"/>
+        <TextBlock Text="Комментарий" Grid.Row="7" Style="{StaticResource TextBlock}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource TextBox}" MaxLength="50" Text="{Binding naimenov}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource TextBox}" Text="{Binding kolichestvo}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBox}" Text="{Binding cena}"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Style="{StaticResource ComboBox}" x:Name="ComboColor" SelectedItem="{Binding Color}" DisplayMemberPath="Color1"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource TextBox}" MaxLength="50" Text="{Binding sostav}"/>
+        <ComboBox Grid.Row="5" Grid.Column="1" Style="{StaticResource ComboBox}" x:Name="ComboStrana" SelectedItem="{Binding Strana}" DisplayMemberPath="Strana1"/>
+        <ComboBox Grid.Row="6" Grid.Column="1" Style="{StaticResource ComboBox}" x:Name="ComboSize" SelectedItem="{Binding Size}" DisplayMemberPath="Size1"/>
+        <TextBox Grid.Row="7" Grid.Column="1" Style="{StaticResource TextBox}" Text="{Binding komment}"/>
+        
+        <Button Grid.Row="8" Grid.Column="0" Content="Назад" Name="btnBack" Click="btnBack_Click" Style="{StaticResource btnR}"/>
+        <Button Grid.Row="8" Grid.ColumnSpan="2" Content="Сохранить" Name="btnSave" Click="btnSave_Click" Style="{StaticResource btnG}"/>
+    </Grid>
+</Page>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d86d9fca0d9b4492a33522c0842541e0" Name="Diagram1">
+        <EntityTypeShape EntityType="ClothesModel.Color" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ClothesModel.Tovars" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="ClothesModel.FK_Tovars_Color" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ClothesModel.Size" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="ClothesModel.Strana" Width="1.5" PointX="0.75" PointY="5" />
+        <AssociationConnector Association="ClothesModel.FK_Tovars_Size" />
+        <AssociationConnector Association="ClothesModel.FK_Tovars_Strana" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
